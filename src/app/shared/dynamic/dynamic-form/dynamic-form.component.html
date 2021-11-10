@@ -1,0 +1,20 @@
+<div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+        <div *ngIf="!isValid && submitted && formErrorMessage !== undefined" class="alert alert-danger" role="alert">
+            <span class="fw-bold">Error: </span>{{ formErrorMessage }}
+        </div>
+
+        <ng-container *ngFor="let control of controls">
+            <app-dynamic-form-control [control]="control" [form]="form" [submitted]="submitted"></app-dynamic-form-control>
+        </ng-container>
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary m-2" type="submit" style="width: 50%;">{{ submitButtonText }}</button>
+            <button *ngIf="hasBackButton" class="btn btn-secondary m-2" (click)="goBack()" style="width: 50%;">{{ backButtonText }}</button>
+        </div>
+
+    </form>
+
+</div>

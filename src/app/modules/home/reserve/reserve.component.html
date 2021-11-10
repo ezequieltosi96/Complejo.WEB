@@ -1,0 +1,16 @@
+<div class="justify-content-center" style="border: solid 1px blue; padding: 20px; width: 400px;">
+
+    <div class="row">
+        <h3>Reservar un nuevo turno</h3>
+    </div>
+
+    <div class="row">
+
+        <app-dynamic-form [controls]="controls" 
+                          (submit)="formSubmit($event)"
+                          [submitButtonText]="submitButtonText"></app-dynamic-form>
+
+    </div>
+
+
+</div>

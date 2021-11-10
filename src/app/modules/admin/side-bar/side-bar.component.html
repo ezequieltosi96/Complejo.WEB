@@ -1,0 +1,22 @@
+<div class="min-vh-100 bg-dark p-2" style="color: white;">
+    <h1 class="text-center py-3">admin menu</h1>
+
+    <ul class="nav d-flex flex-column">
+        <li class="py-2">
+            <a class="nav-link" [routerLink]="['/admin/turns']">Turnos</a>
+        </li>
+
+        <li class="py-2">
+            <a class="nav-link" [routerLink]="['/admin/fields']">Canchas</a>
+        </li>
+        
+        <li class="py-2">
+            <a class="nav-link" [routerLink]="['/admin/users']">Usuarios</a>
+        </li>
+    </ul>
+
+    <div class="fixed-bottom mb-5 p-4" >
+        <a class="nav-link" (click)="terminateSession()">Logout</a>
+    </div>
+
+</div>

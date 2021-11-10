@@ -1,0 +1,27 @@
+<div class="justify-content-center" style="border: solid 1px blue; padding: 20px; width: 400px;">
+
+    <div class="row">
+        <h3>Consultar un turno existente</h3>
+    </div>
+
+    <div class="row">
+        <form [formGroup]="consultForm" (ngSubmit)="consultFormOnSubmit()">
+
+            &nbsp;
+            <div class="row">
+                <div class="col-4">
+                    <label for="code" class="control-label">Codigo: </label>
+                </div>
+                <div class="col-8">
+                    <input formControlName="code" type="text" name="code" class="form-control" />
+                </div>
+            </div>
+
+            &nbsp;
+            <div class="row">
+                <button class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+</div>

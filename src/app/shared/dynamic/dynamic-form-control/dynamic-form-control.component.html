@@ -1,0 +1,29 @@
+
+<div [ngClass]="control.controlType !== 'checkbox' ? 'row' : ''" class="m-2" [formGroup]="form">
+
+    <div [ngClass]="control.controlType !== 'checkbox' ? 'col-4' : ''">
+        <label *ngIf="control.controlType !== 'checkbox'" class="form-label" [attr.for]="control.key">{{ control.label }}</label>
+    </div>
+
+    <div [ngClass]="control.controlType !== 'checkbox' ? 'col-8' : ''" [ngSwitch]="control.controlType">
+
+        <input *ngSwitchCase="'textbox'" class="form-control" [ngClass]="!isValid && submitted ? 'is-invalid' : ''" [formControlName]="control.key" [id]="control.key" [type]="control.type" [value]="control.value !== null ? control.value : ''"/>
+
+        <select *ngSwitchCase="'dropdown'" [id]="control.key" [formControlName]="control.key" class="form-select" [ngClass]="!isValid && submitted ? 'is-invalid' : ''">
+            <option *ngIf="control.defaultOption" selected value=''>{{ control.defaultOption }}</option>
+            <option *ngFor="let opt of control.options" [value]="opt.id">{{ opt.name }}</option>
+        </select>
+
+        <div *ngSwitchCase="'checkbox'" class="d-flex flex-wrap justify-content-center">
+            <div class="invalid-feedback" *ngIf="!isValid && submitted">{{ control.errorMessage }}</div>
+            <label *ngFor="let opt of control.options" class="form-check-label" [attr.for]="control.key" style="padding: 5px;">
+                <input class="form-check-input mx-2" [ngClass]="!isValid && submitted ? 'is-invalid' : ''" type="radio" [id]="control.key" [value]="opt.id" [formControlName]="control.key"/>
+                <span>{{opt.name}}</span>
+            </label>
+        </div>
+
+        <div class="invalid-feedback" *ngIf="!isValid && submitted">{{ control.errorMessage }}</div>
+    </div>
+
+    
+</div>

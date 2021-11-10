@@ -1,0 +1,18 @@
+
+<h1 class="text-center">Usuarios</h1>
+
+<div class="container">
+
+    <div class="d-flex flex-row justify-content-end">
+        <a class="btn btn-primary m-3" [routerLink]="['new']"><em class="{{ FontAwesome.ADD }}"></em></a>
+    </div>
+
+    <app-generic-table [metadata]="metadata" 
+                        [columns]="columns" 
+                        [actions]="actions" 
+                        [data]="users"
+                        (uploaded)="search($event)"
+                        class="mt-5"></app-generic-table>
+
+
+</div>

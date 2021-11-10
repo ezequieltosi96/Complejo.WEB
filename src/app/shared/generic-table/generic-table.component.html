@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <table aria-hidden="true" class="table table-hover table-striped text-center">
+            
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th *ngFor="let item of columns" scope="col">{{item.title}}</th>
+                    <th *ngFor="let item of actions" scope="col"></th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <ng-container *ngIf="data !== undefined && data !== null && data.length > 0">
+                    <tr *ngFor="let item of data">
+                        <ng-container *ngFor="let column of columns">
+                            <td *ngIf="column.transform !== undefined">{{ column.transform(item[column.dataProperty]) }}</td>
+                            <td *ngIf="column.transform === undefined">{{ item[column.dataProperty] }}</td>
+                        </ng-container>
+                        
+                        <ng-container *ngFor="let action of actions">
+                            <td class="text-center">
+                                <em *ngIf="action.name !== 'Delete'" class="{{action.icon}}" (click)="action.click(item)"></em>
+                                <em *ngIf="action.name === 'Delete'" class="{{action.icon}}" (click)="action.click(item)"></em>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+            </tbody>
+        
+        </table>
+    </div>
+
+    <ng-container *ngIf="metadata !== undefined">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <nav>
+                    <ul class="pagination text-center">
+                        <li class="page-item" [ngClass]="{'disabled': !metadata.hasPreviousPage}">
+                            <a class="page-link" (click)="search(metadata.currentPage - 1)">&laquo;</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link page-selector">
+                                <select [(ngModel)]="metadata.currentPage" (change)="search(metadata.currentPage)">
+                                    <option *ngFor="let page of pages" [value]="page">{{ page }}</option>
+                                </select>
+                            </a>
+                        </li>
+
+                        <li class="page-item" [ngClass]="{'disabled': !metadata.hasNextPage}">
+                            <a class="page-link" (click)="search(metadata.currentPage + 1)">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </ng-container>
+
+</div>

@@ -1,0 +1,8 @@
+
+<div class="d-flex justify-content-center">
+    <form [formGroup]="loginForm" (ngSubmit)="loginFormOnSubmit()">
+        <input type="text" class="form-control" formControlName="email" placeholder="email" autocomplete="off" />
+        <input type="password" class="form-control" formControlName="password" placeholder="password" />
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
