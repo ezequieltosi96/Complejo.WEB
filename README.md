@@ -1,1 +1,1 @@
-Proyecto web para "El Complejo Futbol"
+Proyecto web para "El Complejo Futbol" desarrollado con Angular
