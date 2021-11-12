@@ -11,7 +11,7 @@
 
         <select *ngSwitchCase="'dropdown'" [id]="control.key" [formControlName]="control.key" class="form-select" [ngClass]="!isValid && submitted ? 'is-invalid' : ''">
             <option *ngIf="control.defaultOption" selected value=''>{{ control.defaultOption }}</option>
-            <option *ngFor="let opt of control.options" [value]="opt.id">{{ opt.name }}</option>
+            <option *ngFor="let opt of control.options" [value]="opt.id" [selected]="control.value !== null && control.value === opt.id">{{ opt.name }}</option>
         </select>
 
         <div *ngSwitchCase="'checkbox'" class="d-flex flex-wrap justify-content-center">

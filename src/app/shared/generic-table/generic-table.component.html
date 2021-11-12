@@ -30,10 +30,8 @@
         </table>
     </div>
 
-    <ng-container *ngIf="metadata !== undefined">
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
+    <ng-container *ngIf="metadata">
+        <div class="d-flex justify-content-center">
                 <nav>
                     <ul class="pagination text-center">
                         <li class="page-item" [ngClass]="{'disabled': !metadata.hasPreviousPage}">
@@ -53,8 +51,6 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
-            <div class="col-4"></div>
         </div>
     </ng-container>
 

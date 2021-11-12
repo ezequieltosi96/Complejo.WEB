@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CreateUserCommand } from 'src/app/gateway/commands/user/create-user.command';
+import { UpdateUserCommand } from 'src/app/gateway/commands/user/update-user.command';
+import { ComboBox } from 'src/app/models/responses/combo-box';
 import { User } from 'src/app/models/user/user';
 import { BaseComponentService } from 'src/app/services/base/base-component.service';
 import { UserService } from 'src/app/services/user.service';
+import { DropDownControl } from 'src/app/shared/dynamic/models/drop-down-control';
 import { FormControlBase } from 'src/app/shared/dynamic/models/form-control-base';
 import { TextBoxControl } from 'src/app/shared/dynamic/models/text-box-control';
 import { Regex } from 'src/app/shared/utils/enums.utils';
@@ -17,10 +21,11 @@ import { isFormValue, isNullOrUndefined } from 'src/app/shared/utils/functions.u
 export class CreateUpdateAdminUserComponent implements OnInit {
 
   public id!: string;
-  public user: User = new User('', '', '', '');
+  public user: User = new User('', '', '', '', '');
 
   public loading: boolean = true;
   public title: string = 'Nuevo usuario';
+  public isEdit: boolean = false;
 
   //#region Form
   public controls : FormControlBase<string>[] = [];
@@ -46,8 +51,10 @@ export class CreateUpdateAdminUserComponent implements OnInit {
 
     if(!isNullOrUndefined(this.id)) {
       this.title = 'Editar usuario';
-      promises.push(); //hago llamada a la promesa para inicializar el valor de user
+      this.isEdit = true;
+      promises.push(this.getUserByIdPromise());
     }
+
     this.resolvePromises(promises);
   }
 
@@ -69,8 +76,8 @@ export class CreateUpdateAdminUserComponent implements OnInit {
         order: 1
       }),
       new TextBoxControl({
-        key: 'name',
-        value: this.user.name,
+        key: 'firstName',
+        value: this.user.firstName,
         type: 'text',
         label: 'Nombre: ',
         validators: [Validators.required, Validators.pattern(Regex.LETTERS_SPACE), Validators.minLength(3)],
@@ -86,9 +93,37 @@ export class CreateUpdateAdminUserComponent implements OnInit {
         errorMessage: 'Ingresa un apellido valido (mínimo 3 caracteres).',
         order: 3
       }),
+      new DropDownControl({
+        key: 'roleName',
+        defaultOption: 'Seleccione un rol',
+        options: [
+          new ComboBox('Admin', 'Admin'),
+          new ComboBox('AppUser', 'AppUser'),
+        ],
+        validators: [Validators.required],
+        errorMessage: this.user.roleName !== '' ? undefined : 'Seleccione un rol.',
+        value: this.user.roleName !== '' ? this.user.roleName : undefined,
+        label: 'Rol',
+        order: 4
+      })
     ];
 
     this.loading = false;
+  }
+
+  getUserByIdPromise(): Promise<void> {
+    return new Promise((resolve, reject) =>{
+      this.userService.GetUserById(this.id).subscribe(
+        res => {
+          this.user = res;
+          resolve();
+        },
+        err => {
+          this.bService.toastr.error(err.error, 'Error');
+          reject();
+        }
+      );
+    });
   }
 
   formSubmit(value: any): void {
@@ -98,7 +133,33 @@ export class CreateUpdateAdminUserComponent implements OnInit {
 
     const formValue = JSON.parse(value);
 
-    console.log(formValue);
+    this.createUpdateUser(formValue);
+  }
+
+  createUpdateUser(formValue: any) {
+    this.bService.spinner.show();
+    if(this.isEdit) {
+      const command: UpdateUserCommand = new UpdateUserCommand(formValue.email, formValue.firstName, formValue.lastName, formValue.roleName, this.id);
+      this.userService.UpdateUser(command).subscribe(
+        res => {
+          this.bService.toastr.success('Usuario actualizado', 'Éxito!');
+        },
+        err => {
+          this.bService.toastr.error(err.error, 'Error');
+        }
+      ).add(() => this.bService.spinner.hide());
+    }
+    else {
+      const command: CreateUserCommand = new CreateUserCommand(formValue.email, formValue.firstName, formValue.lastName, formValue.roleName);
+      this.userService.CreateUser(command).subscribe(
+        res => {
+          this.bService.toastr.success('Usuario creado', 'Éxito!');
+        },
+        err => {
+          this.bService.toastr.error(err.error, 'Error');
+        }
+      ).add(() => this.bService.spinner.hide());
+    }
   }
 
 }

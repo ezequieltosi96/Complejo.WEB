@@ -3,15 +3,22 @@
 
 <div class="container">
 
+    <form [formGroup]="searchForm" (ngSubmit)="searchInit()" style="width: 400px;">
+        <input type="text" class="form-control" formControlName="searchCriteria" placeholder="Busqueda...">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
+
+    &nbsp;
     <div class="d-flex flex-row justify-content-end">
         <a class="btn btn-primary m-3" [routerLink]="['new']"><em class="{{ FontAwesome.ADD }}"></em></a>
     </div>
 
-    <app-generic-table [metadata]="metadata" 
+    <app-generic-table  *ngIf="!loading"
+                        [metadata]="metadata" 
                         [columns]="columns" 
                         [actions]="actions" 
                         [data]="users"
-                        (uploaded)="search($event)"
+                        (uploaded)="searchByPage($event)"
                         class="mt-5"></app-generic-table>
 
 

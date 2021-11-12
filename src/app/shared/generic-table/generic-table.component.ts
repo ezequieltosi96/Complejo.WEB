@@ -15,7 +15,7 @@ export class GenericTableComponent implements OnInit {
   @Input()
   public data: any[] = [];
   @Input()
-  metadata!: Metadata;
+  metadata: Metadata | undefined;
   @Input()
   public columns: ColumnTable[] = [];
   @Input()
@@ -38,7 +38,7 @@ export class GenericTableComponent implements OnInit {
   getPages(): void {
     this.pages = [];
 
-    for (let i = 1; i <= this.metadata.totalPages; i++) {
+    for (let i = 1; i <= this.metadata!.totalPages; i++) {
       this.pages.push(i);
     }
   }
