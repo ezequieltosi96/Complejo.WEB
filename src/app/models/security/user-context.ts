@@ -29,4 +29,15 @@ export class UserContext {
     get isAdmin(): boolean {
         return this.tokenDescriptor.isAdmin === "True";
     }
+
+    get idClient(): string | undefined | null {
+        if(this.tokenDescriptor.idClient)
+            return this.tokenDescriptor.idClient;
+        
+        return null;
+    }
+
+    get exp(): number {
+        return this.tokenDescriptor.exp;
+    }
 }

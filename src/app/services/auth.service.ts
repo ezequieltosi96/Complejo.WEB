@@ -30,9 +30,9 @@ export class AuthService {
   setSession(token: string): void {
     const decoded: JwtTokenDescriptor = decodeToken(token);
 
-    const expirationDateTime = moment.utc().add(moment(decoded.exp).seconds(), 'second');
+    const expirationDateTime = decoded.exp * 1000;
 
-    const expiresAt = expirationDateTime.valueOf().toString();
+    const expiresAt = expirationDateTime.toString();
 
     localStorage.setItem('id_token', token);
     localStorage.setItem('expires_at', expiresAt);
@@ -63,11 +63,7 @@ export class AuthService {
   }
 
   getCurrentToken(): string | undefined {
-    if(this.isLoggedIn()){
-      return localStorage.getItem('id_token')!;
-    }
-    
-    return undefined;
+    return localStorage.getItem('id_token')!;
   }
 
   isTokenExpired() {
@@ -75,7 +71,10 @@ export class AuthService {
 
     if(expiration) {
       const expiresAt = Number(expiration);
-      return moment.utc() > moment(expiresAt);
+
+      var currentTime = new Date().getTime();
+
+      return currentTime > expiresAt;
     }
 
     return true;

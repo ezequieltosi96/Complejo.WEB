@@ -1,0 +1,114 @@
+<h3 class="text-center mt-5">{{ title }}</h3>
+
+<div class="d-flex justify-content-center mt-5">
+
+
+    <form (ngSubmit)="formSubmit()" [formGroup]="form" style="width: 800px;" class="mb-5">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="date">Fecha:</label>
+                    </div>
+                    <div class="col-8">
+                        <input #d (change)="onChangeDate(d.value)" type="date" name="date" formControlName="date" class="form-control" [ngClass]="!isValidDate && submitted ? 'is-invalid' : ''" min="{{ today }}">
+                        <div class="invalid-feedback" *ngIf="!isValidDate && submitted">Ingrese una fecha válida.</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="time">Hora:</label>
+                    </div>
+                    <div class="col-8">
+                        <select #t (change)="onChangeTime(t.value)" formControlName="time" class="form-select" [ngClass]="!isValidTime && submitted ? 'is-invalid' : ''">
+                            <option value=''>Seleccione una opción</option>
+                            <option *ngFor="let opt of times" [value]="opt.id">{{ opt.name }}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="!isValidTime && submitted">Seleccione una opción.</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="idField">Cancha:</label>
+                    </div>
+                    <div class="col-8">
+                        <select formControlName="idField" class="form-select" [ngClass]="!isValidField && submitted ? 'is-invalid' : ''">
+                            <option value=''>Seleccione una opción</option>
+                            <option *ngFor="let opt of fields" [value]="opt.id">{{ opt.name }}</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="!isValidField && submitted">Seleccione una opción.</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="clientName">Nombre:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="clientName" formControlName="clientName" class="form-control" [ngClass]="!isValidClientName && submitted ? 'is-invalid' : ''">
+                        <div class="invalid-feedback" *ngIf="!isValidClientName && submitted">Ingrese un nombre válido.</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="clientLastName">Apellido:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="clientLastName" formControlName="clientLastName" class="form-control" [ngClass]="!isValidClientLastName && submitted ? 'is-invalid' : ''">
+                        <div class="invalid-feedback" *ngIf="!isValidClientLastName && submitted">Ingrese un apellido válido.</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="clientDni">Dni:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="clientDni" formControlName="clientDni" class="form-control" [ngClass]="!isValidClientDni && submitted ? 'is-invalid' : ''">
+                        <div class="invalid-feedback" *ngIf="!isValidClientDni && submitted">Ingrese un dni válido (8 caracteres).</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="clientPhoneNumber">Teléfono:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="clientPhoneNumber" formControlName="clientPhoneNumber" class="form-control" [ngClass]="!isValidClientPhoneNumber && submitted ? 'is-invalid' : ''">
+                        <div class="invalid-feedback" *ngIf="!isValidClientPhoneNumber && submitted">Ingrese un teléfono válido (máximo 13 caracteres).</div>
+                    </div>
+                </div>
+        
+                &nbsp;
+                <div class="row">
+                    <div class="col-4 my-auto">
+                        <label class="form-label" for="clientEmail">Correo:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="clientEmail" formControlName="clientEmail" class="form-control" [ngClass]="!isValidClientEmail && submitted ? 'is-invalid' : ''">
+                        <div class="invalid-feedback" *ngIf="!isValidClientEmail && submitted">Ingrese un correo válido.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary m-2" type="submit" style="width: 50%;">Guardar</button>
+            <button class="btn btn-secondary m-2" (click)="goBack()" style="width: 50%;">Volver</button>
+        </div>
+    </form>
+                
+</div>

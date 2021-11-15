@@ -1,1 +1,48 @@
-<p>admin-turn works!</p>
+
+<h1 class="text-center">Turnos</h1>
+
+<div class="container">
+    <!-- Formulario de filtros -->
+    <div style="border: 1px solid black; border-radius: 10px; padding: 30px;">
+        <form [formGroup]="searchForm" (ngSubmit)="searchInit()" >
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="date" class="form-control" formControlName="date">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" formControlName="time">
+                        <option value="">Seleccione un horario</option>
+                        <option *ngFor="let opt of times" [value]="opt.id">{{opt.name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" formControlName="idFieldType">
+                        <option value="">Seleccione un tipo de cancha</option>
+                        <option *ngFor="let opt of fieldTypes" [value]="opt.id">{{opt.name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" formControlName="clientSearchCriteria" placeholder="Cliente">
+                </div>
+            </div>
+            &nbsp;
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+                <button class="btn btn-secondary" style="margin-left: 10px;" type="button" (click)="resetFilters()">Limpiar</button>
+            </div>
+        </form>
+    </div>
+
+    &nbsp;
+    <div class="d-flex flex-row justify-content-end">
+        <a class="btn btn-primary m-3" [routerLink]="['new']"><em class="{{ FontAwesome.ADD }}"></em></a>
+    </div>
+
+    <app-generic-table  *ngIf="!loading"
+                        [metadata]="metadata" 
+                        [columns]="columns" 
+                        [actions]="actions" 
+                        [data]="turns"
+                        (uploaded)="searchByPage($event)"
+                        class="mt-5"></app-generic-table>
+</div>

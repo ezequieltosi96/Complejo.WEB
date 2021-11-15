@@ -1,12 +1,16 @@
 
-<h1 class="text-center">Usuarios</h1>
+<h1 class="text-center">Usuarios administradores</h1>
 
 <div class="container">
 
-    <form [formGroup]="searchForm" (ngSubmit)="searchInit()" style="width: 400px;">
-        <input type="text" class="form-control" formControlName="searchCriteria" placeholder="Busqueda...">
-        <button class="btn btn-primary" type="submit">Buscar</button>
-    </form>
+    <div style="border: 1px solid black; border-radius: 10px; padding: 30px;">
+        <form [formGroup]="searchForm" (ngSubmit)="searchInit()" >
+            <div class="d-flex justify-content-end">
+                <input type="text" class="form-control" formControlName="searchCriteria" placeholder="Busqueda..." style="margin: 0 10px;">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
 
     &nbsp;
     <div class="d-flex flex-row justify-content-end">
@@ -21,5 +25,6 @@
                         (uploaded)="searchByPage($event)"
                         class="mt-5"></app-generic-table>
 
-
+    <h5 class="text-center mt-3 text-secondary" *ngIf="users.length === 0">No hay usuarios para mostrar</h5>
+    
 </div>

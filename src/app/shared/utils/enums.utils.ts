@@ -5,6 +5,8 @@ export enum FontAwesome {
     ADD = 'fas fa-plus',
     DETAIL = 'fas fa-list',
     DOWNLOAD = 'fas fa-download',
+
+    UNDO = 'fas fa-undo',
     
     EYE = 'fas fa-eye',
     EYE_SLASH = 'fas fa-eye-slash',
@@ -29,4 +31,9 @@ export enum Regex {
     LETTERS = '^[A-Za-zÀ-ú]*$',
     LETTERS_SPACE = '^[A-Za-zÀ-ú ]*$',
     LETTERS_NUMBERS_SPACE = '^[A-Za-zÀ-ú0-9 ]*$',
+}
+
+export enum Pagination {
+    PAGE = 1,
+    PAGE_SIZE = 15,
 }

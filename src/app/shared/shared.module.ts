@@ -12,6 +12,7 @@ import { GenericTableComponent } from './generic-table/generic-table.component';
 import { DynamicFormComponent } from './dynamic/dynamic-form/dynamic-form.component';
 import { DynamicFormControlComponent } from './dynamic/dynamic-form-control/dynamic-form-control.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
       GenericTableComponent,
       DynamicFormControlComponent,
       DynamicFormComponent,
-      ConfirmDialogComponent
+      ConfirmDialogComponent,
+      UnauthorizedComponent
   ],
   exports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     DynamicFormControlComponent,
     DynamicFormComponent,
     ConfirmDialogComponent,
+    UnauthorizedComponent
   ],
   imports: [
     CommonModule,

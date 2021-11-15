@@ -1,0 +1,15 @@
+<h3 class="text-center mt-5">{{ title }}</h3>
+
+<div class="d-flex justify-content-center mt-5">
+
+<app-dynamic-form *ngIf="!loading"
+                  [controls]="controls"
+                  [formErrorMessage]="formErrorMessage"
+                  [hasBackButton]="hasBackButton"
+                  [backButtonText]="backButtonText"
+                  [submitButtonText]="submitButtonText"
+                  [url]="url"
+                  (submit)="formSubmit($event)"
+                  style="width: 500px;"></app-dynamic-form>
+                
+</div>

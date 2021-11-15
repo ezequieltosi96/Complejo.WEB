@@ -22,12 +22,12 @@ export class FieldService {
 
   //#region Commands
 
-  CreateField(command: CreateFieldCommand): Observable<number> {
-    return this.apiService.post<number>(this.prefix, command);
+  CreateField(command: CreateFieldCommand): Observable<string> {
+    return this.apiService.post<string>(this.prefix, command);
   }
 
-  UpdateField(command: UpdateFieldCommand): Observable<number> {
-    return this.apiService.put<number>(this.prefix, command);
+  UpdateField(command: UpdateFieldCommand): Observable<string> {
+    return this.apiService.put<string>(this.prefix, command);
   }
 
   DeleteField(id: string): Observable<object> {

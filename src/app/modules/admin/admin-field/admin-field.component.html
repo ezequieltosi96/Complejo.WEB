@@ -1,1 +1,45 @@
-<p>admin-field works!</p>
+
+<h1 class="text-center">Canchas</h1>
+
+<div class="container">
+    <!-- Formulario de filtros -->
+    <div style="border: 1px solid gray; border-radius: 10px; padding: 30px;">
+        <form [formGroup]="searchForm" (ngSubmit)="searchInit()" >
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" formControlName="description" placeholder="Descripción">
+                </div>
+                <div class="col-4">
+                    <select class="form-select" formControlName="idFieldType">
+                        <option value="">Seleccione un tipo</option>
+                        <option *ngFor="let opt of fieldTypes" [value]="opt.id">{{opt.name}}</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class="form-select" formControlName="idFieldStatus">
+                        <option value="">Seleccione un estado</option>
+                        <option *ngFor="let opt of fieldStatus" [value]="opt.id">{{opt.name}}</option>
+                    </select>
+                </div>
+            </div>
+            &nbsp;
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+    &nbsp;
+    <div class="d-flex flex-row justify-content-end">
+        <a class="btn btn-primary m-3" [routerLink]="['new']"><em class="{{ FontAwesome.ADD }}"></em></a>
+    </div>
+
+    <app-generic-table  *ngIf="!loading"
+                        [metadata]="metadata" 
+                        [columns]="columns" 
+                        [actions]="actions" 
+                        [data]="fields"
+                        (uploaded)="searchByPage($event)"
+                        class="mt-5"></app-generic-table>
+
+</div>

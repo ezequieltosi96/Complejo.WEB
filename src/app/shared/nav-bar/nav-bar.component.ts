@@ -10,11 +10,17 @@ import { BaseComponentService } from 'src/app/services/base/base-component.servi
 export class NavBarComponent implements OnInit {
 
   public loggedIn: boolean = false;
+  public isAdmin: boolean = false;
 
   constructor(private readonly authService: AuthService, 
               private readonly baseComponentService: BaseComponentService) 
   { 
     this.loggedIn = authService.isLoggedIn();
+    
+    if(this.loggedIn){
+      const userContext = authService.getUserContext();
+      this.isAdmin = userContext ? userContext.isAdmin : false;
+    }
   }
 
   ngOnInit(): void {

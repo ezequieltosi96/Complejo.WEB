@@ -16,12 +16,11 @@ export class BaseComponentService {
               public matDialog: MatDialog,
               public toastr: ToastrService) { }
 
-  // TODO: manejo de errores global
   public handleErrorMessage(err: any): any {
 
     let error = {
       title: 'Error',
-      message: 'Unknow error.'
+      message: 'Error en el servidor.'
     };
 
     if(err.error?.error) {
@@ -31,7 +30,7 @@ export class BaseComponentService {
 
     if(err.error?.errors){
       error.title = err.error.title;
-      error.message = '';
+      error.message = err.error?.errors[0];
       return error;
     }
 

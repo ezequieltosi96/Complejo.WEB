@@ -5,5 +5,6 @@ export class JwtTokenDescriptor {
                 public readonly uid: string,
                 public readonly roles: string[],
                 public readonly exp: number,
-                public readonly isAdmin: string) {}
+                public readonly isAdmin: string,
+                public readonly idClient: string | null | undefined) {}
 }

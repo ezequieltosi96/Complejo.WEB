@@ -1,7 +1,7 @@
 
 <div [ngClass]="control.controlType !== 'checkbox' ? 'row' : ''" class="m-2" [formGroup]="form">
 
-    <div [ngClass]="control.controlType !== 'checkbox' ? 'col-4' : ''">
+    <div [ngClass]="control.controlType !== 'checkbox' ? 'col-4  my-auto' : ''">
         <label *ngIf="control.controlType !== 'checkbox'" class="form-label" [attr.for]="control.key">{{ control.label }}</label>
     </div>
 

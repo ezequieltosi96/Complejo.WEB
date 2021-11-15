@@ -2,15 +2,17 @@
 <div class="d-flex justify-content-center">
     <form [formGroup]="registerForm" (ngSubmit)="registerFormOnSubmit()" autocomplete="off">
         
-        <input type="text" class="form-control" formControlName="email" placeholder="email" />
+        <input type="text" class="form-control" formControlName="email" placeholder="email" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="username" placeholder="username" />
+        <input type="text" class="form-control" formControlName="dni" placeholder="dni" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="name" placeholder="name" />
+        <input type="text" class="form-control" formControlName="phoneNumber" placeholder="phone number" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="lastName" placeholder="last name" />
+        <input type="text" class="form-control" formControlName="name" placeholder="name" autocomplete="off"/>
+
+        <input type="text" class="form-control" formControlName="lastName" placeholder="last name" autocomplete="off"/>
         
-        <input type="password" class="form-control" formControlName="password" placeholder="password" />
+        <input type="password" class="form-control" formControlName="password" placeholder="password" autocomplete="off"/>
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>

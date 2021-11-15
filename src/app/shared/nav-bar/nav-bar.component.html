@@ -2,5 +2,6 @@
     <a class="nav-link" [routerLink]="['/home/index']">Home</a>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/auth/login']">Login</a>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/auth/register']">Register</a>
+    <a *ngIf="loggedIn && isAdmin" class="nav-link" [routerLink]="['/admin']">Admin</a>
     <button *ngIf="loggedIn" class="btn btn-sm btn-primary" (click)="terminateSession()">Logout</button>
 </div>

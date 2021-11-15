@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IsAdminGuard } from 'src/app/guards/is-admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes : Routes = [
   { 
     path: 'admin',
     component: DashboardComponent,
-    loadChildren: () => import('./child-admin-routes.module').then(m => m.ChildAdminRoutesModule)
+    loadChildren: () => import('./child-admin-routes.module').then(m => m.ChildAdminRoutesModule),
+    canActivate: [IsAdminGuard]
   },
 ];
 
