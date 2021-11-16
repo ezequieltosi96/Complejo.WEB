@@ -14,10 +14,12 @@ import { AdminModule } from './modules/admin/admin.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ProfileComponent } from './modules/home/profile/profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent
   ],
   imports: [
     SharedModule,

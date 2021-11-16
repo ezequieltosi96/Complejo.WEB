@@ -1,0 +1,144 @@
+
+#modal {
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    background: radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.09) 100%) !important;
+    backdrop-filter: blur(42px) !important;
+  }
+  
+  #log-in {
+    margin-left: auto;
+  }
+  
+  @media (max-width: 768px) {
+    #modal {
+      width: 100% !important;
+      height: 130px !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #dni-form {
+      width: 100%;
+      align-content: center;
+      padding-bottom: 20px !important;
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    #modal {
+      width: 90% !important;
+      height: 280px !important;
+    }
+  }
+  
+  #formCheck-1:checked {
+    background-color: #1EBF78;
+    border-color: #1EBF78;
+  }
+  
+  @media (max-width: 768px) {
+    #input-style {
+      margin-left: 10px;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #modal {
+      height: 295px !important;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    #row-style {
+      padding-left: 0px !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #row-style {
+      padding-left: 0px !important;
+    }
+  }
+  
+  @media (min-width: 420px) {
+    #radio-style {
+      padding-left: 12px !important;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    #input-style {
+      margin-left: 0px !important;
+    }
+  }
+  
+  @media (max-width: 1400px) {
+    #input-style {
+      margin-left: 10px !important;
+    }
+  }
+  
+  @media (max-width: 1920px) {
+    #radio-style {
+      margin-left: 5px;
+    }
+  }
+  
+  @media (max-width: 1920px) {
+    #input-style {
+      margin-left: 10px !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #heading {
+      padding-left: 18px !important;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    #input-style {
+      margin-left: 0px !important;
+    }
+  }
+  
+  @media (min-width: 420px) {
+    #modal {
+      height: 275px !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #modal {
+      height: 140px !important;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    #form {
+      padding-left: 24px !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #form {
+      padding-left: 10px !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #modal {
+      width: 320px !important;
+      height: 295px !important;
+    }
+  }
+  
+  #row-style {
+    padding-left: 18px !important;
+  }
+  
+  

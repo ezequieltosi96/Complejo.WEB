@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { CreateReservationLoggedInClientCommand } from '../gateway/commands/turn/create-reservation-logged-in-client.command';
+import { CreateReservationUnregisteredClientCommand } from '../gateway/commands/turn/create-reservation-unregistered-client.command';
 import { CreateTurnAdminCommand } from '../gateway/commands/turn/create-turn-admin.command';
+import { GetAllTurnsByClientQuery } from '../gateway/querys/turn/all-turns-by-client.query';
 import { GetAllAvailableFieldByDateTimeQuery } from '../gateway/querys/turn/available-field-by-date-time.query';
 import { GetTurnByFilterQuery } from '../gateway/querys/turn/turn-by-filter.query';
 import { ComboBox } from '../models/responses/combo-box';
 import { PagedListResponse } from '../models/responses/paged-list-response';
+import { TurnByClient } from '../models/turn/turn-by-client';
 import { TurnByFilter } from '../models/turn/turn-by-filter';
+import { TurnById } from '../models/turn/turn-by-id';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -41,14 +46,33 @@ export class TurnService {
     return this.apiService.post<string>(this.prefix, command);
   }
 
+  CreateReservationLoggedInClient(command: CreateReservationLoggedInClientCommand) : Observable<string> {
+    const url = `${this.prefix}/registered`;
+    return this.apiService.post<string>(url, command);
+  }
+
+  CreateReservationUnregisteredClient(command: CreateReservationUnregisteredClientCommand) : Observable<string> {
+    const url = `${this.prefix}/unregistered`;
+    return this.apiService.post<string>(url, command);
+  }
+
   DeleteTurn(id: string) : Observable<object> {
     return this.apiService.delete(this.prefix, id);
   }
 
+  GetTurnByCode(code: string) : Observable<TurnById> {
+    const url = `${this.prefix}/by-code?Code=${code}`;
+    return this.apiService.get<TurnById>(url);
+  }
 
   GetTurnByFilter(query: GetTurnByFilterQuery): Observable<PagedListResponse<TurnByFilter[]>> {
     const url = `${this.prefix}/by-filter${query.getParams()}`;
     return this.apiService.get<PagedListResponse<TurnByFilter[]>>(url);
+  }
+  
+  GetAllTurnsByClient(query: GetAllTurnsByClientQuery): Observable<PagedListResponse<TurnByClient[]>> {
+    const url = `${this.prefix}/by-client${query.getParams()}`;
+    return this.apiService.get<PagedListResponse<TurnByClient[]>>(url);
   }
 
   GetAllAvailableFieldByDateTime(query: GetAllAvailableFieldByDateTimeQuery): Observable<ComboBox[]> {

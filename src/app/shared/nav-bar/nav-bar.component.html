@@ -1,7 +1,35 @@
-<div class="d-flex justify-content-center" style="margin: 10px 0;">
+<!-- <div class="d-flex justify-content-center" style="margin: 10px 0;">
     <a class="nav-link" [routerLink]="['/home/index']">Home</a>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/auth/login']">Login</a>
     <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['/auth/register']">Register</a>
     <a *ngIf="loggedIn && isAdmin" class="nav-link" [routerLink]="['/admin']">Admin</a>
+    <a *ngIf="loggedIn && !isAdmin" class="nav-link" [routerLink]="['/profile']">Perfil</a>
     <button *ngIf="loggedIn" class="btn btn-sm btn-primary" (click)="terminateSession()">Logout</button>
+</div> -->
+<div style="border-bottom-right-radius: 0px;">
+    <header>
+        <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white transparency border-bottom border-light" id="transmenu">
+            <div class="container"><img src="assets/img/escudo%201%20(1).png" width="50" height="50" style="width: 70px;height: 70px;" alt="logo"><button data-bs-toggle="collapse" class="navbar-toggler collapsed" data-bs-target="#navcol-1"><span></span><span></span><span></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a class="nav-link" [routerLink]="['/home/index']" style="font-family: Rubik;">Inicio</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 d-xxl-flex justify-content-xxl-end">
+                                <ul class="navbar-nav d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-end justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end">
+                                    <li *ngIf="!loggedIn" class="nav-item" id="log-in-1"><a class="nav-link" id="log-in-2" [routerLink]="['/auth/register']" style="font-family: Rubik;">Registrarse</a></li>
+                                    <li *ngIf="!loggedIn" class="nav-item" id="log-in-1"><a class="nav-link" id="log-in-2" [routerLink]="['/auth/login']" style="font-family: Rubik;">Iniciar sesión</a></li>
+                                    <li *ngIf="loggedIn && !isAdmin" class="nav-item" id="log-in-1"><a class="nav-link" id="log-in-2" [routerLink]="['/profile']" style="font-family: Rubik;">Perfil</a></li>
+                                    <li *ngIf="loggedIn" class="nav-item" id="log-in-1"><a class="nav-link" id="log-in-2" (click)="terminateSession()" style="font-family: Rubik;">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 </div>

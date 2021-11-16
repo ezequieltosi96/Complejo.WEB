@@ -1,16 +1,80 @@
-<div class="justify-content-center" style="border: solid 1px blue; padding: 20px; width: 400px;">
+<!-- <div class="justify-content-center" style="border: solid 1px blue; padding: 20px; width: 400px;">
 
     <div class="row">
         <h3>Reservar un nuevo turno</h3>
     </div>
 
-    <div class="row">
+    <form [formGroup]="form" (ngSubmit)="formSubmit()">
 
-        <app-dynamic-form [controls]="controls" 
-                          (submit)="formSubmit($event)"
-                          [submitButtonText]="submitButtonText"></app-dynamic-form>
+        <div class="d-flex flex-wrap justify-content-center">
+            <label *ngFor="let opt of fieldTypes" class="form-check-label" style="padding: 5px;">
+                <input class="form-check-input mx-2" type="radio" [value]="opt.id" formControlName="idFieldType"/>
+                <span>{{opt.name}}</span>
+            </label>
+        </div>
 
+        &nbsp;
+        <div class="row">
+            <div class="col-4">
+                <label for="date" class="control-label">Fecha: </label>
+            </div>
+            <div class="col-8">
+                <input formControlName="date" type="date" name="date" class="form-control"  min="{{ today }}" #d (change)="onChangeDate(d.value)"/>
+            </div>
+        </div>
+
+
+        &nbsp;
+        <div class="row">
+            <div class="col-4">
+                <label for="time" class="control-label">Hora: </label>
+            </div>
+            <div class="col-8">
+                <select class="form-select" formControlName="time">
+                    <option value="">Seleccione un horario</option>
+                    <option *ngFor="let opt of times" [value]="opt.id">{{opt.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="row">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+
+    </form>
+
+</div> -->
+
+
+<form [formGroup]="form" (ngSubmit)="formSubmit()">
+    <div class="container flex-grow-0" id="modal" style="border-radius: 20px;width: 700px;height: 140px;padding: 20px;padding-bottom: 0px;">
+        <div class="row d-flex d-md-flex d-lg-flex d-xxl-flex align-items-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-start align-items-xxl-center" id="row-style" style="padding-left: 18px;margin: 0px;margin-bottom: 10px;">
+            <div class="col-auto" style="padding-left: 0px;padding-right: 0px;">
+                <h1 id="heading" style="font-family: Rubik;text-align: left;font-size: 26px;padding: 0px;padding-left: 0px;margin-right: 15px;">Reserva tu turno</h1>
+            </div>
+
+            <div *ngFor="let opt of fieldTypes" class="col-auto d-xxl-flex justify-content-xxl-start align-items-xxl-start" style="padding: 0px;margin: 0px;padding-right: 0px;padding-left: -12px;">
+                <div class="form-check" id="radio-style" style="margin-right: 15px;">
+                    <input class="form-check-input" type="radio" id="formCheck-1" name="idFieldType" formControlName="idFieldType" style="margin-left: -10px;margin-right: 10px;" [value]="opt.id">
+                    <label class="form-check-label text-start" for="formCheck-1" style="font-size: 14px;font-family: Rubik;">{{opt.name}}</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" id="form" style="padding-left: 18px;margin: 0px;">
+            <div class="col-auto col-md-4 text-start d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-md-center justify-content-xxl-start align-items-xxl-center" id="dni-form" style="padding: 0px;padding-right: 10px;">
+                <input class="form-control" type="date" name="fecha" style="text-align: left;font-family: Rubik;" formControlName="date"  min="{{ today }}" #d (change)="onChangeDate(d.value)">
+            </div>
+            <div class="col-auto col-md-4 text-start d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-md-center justify-content-xxl-start align-items-xxl-center" id="dni-form" style="padding: 0px;padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                <select class="form-select" style="font-family: Rubik;" formControlName="time">
+                    <option value="">Seleccione un horario</option>
+                    <option *ngFor="let opt of times" [value]="opt.id">{{opt.name}}</option>
+                </select>
+            </div>
+            <div class="col d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" id="turno-button" style="margin-left: 0px;">
+                <button class="btn btn-primary" type="submit" style="background: #1EBF78;border-radius: 35px;border-style: none;font-family: Rubik;max-width: 100%;padding-right: 20px;padding-left: 20px;">Buscar turnos</button>
+            </div>
+        </div>
     </div>
-
-
-</div>
+</form>

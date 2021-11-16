@@ -9,17 +9,22 @@ import { BaseComponentService } from 'src/app/services/base/base-component.servi
 })
 export class ConsultComponent implements OnInit {
 
-  public consultForm: FormGroup = this.baseComponentService.formBuilder.group({
-    code: ['', Validators.required]
+  public consultForm: FormGroup = this.bService.formBuilder.group({
+    code: ['', [Validators.required, Validators.maxLength(7)]]
   });
 
-  constructor(private readonly baseComponentService: BaseComponentService) { }
+  constructor(private readonly bService: BaseComponentService) { }
 
   ngOnInit(): void {
   }
 
   consultFormOnSubmit() {
-    console.log(this.consultForm.value);
+
+    if(this.consultForm.invalid){
+      return;
+    }
+
+    this.bService.router.navigate([`home/consult/${this.consultForm.value.code}`]);
   }
 
 }

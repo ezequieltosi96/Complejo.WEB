@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateFieldCommand } from '../gateway/commands/field/create-field.command';
 import { UpdateFieldCommand } from '../gateway/commands/field/update-field.command';
+import { GetAllFieldForNewReservationQuery } from '../gateway/querys/field/all-field-for-new-reservation.query';
 import { GetAllFieldStatusQuery } from '../gateway/querys/field/all-field-status.query';
 import { GetAllFieldTypeQuery } from '../gateway/querys/field/all-field-type.query';
 import { GetFieldByFilterQuery } from '../gateway/querys/field/field-by-filter.query';
@@ -56,6 +57,11 @@ export class FieldService {
   GetAllFieldType(query: GetAllFieldTypeQuery): Observable<ComboBox[]> {
     const url = `${this.prefix}/all-field-type${query.getParams()}`;
     return this.apiService.get<ComboBox[]>(url);
+  }
+
+  GetAllFieldForNewReservation(query: GetAllFieldForNewReservationQuery): Observable<FieldById[]> {
+    const url = `${this.prefix}/for-new-reservation${query.getParams()}`;
+    return this.apiService.get<FieldById[]>(url);
   }
 
   //#endregion

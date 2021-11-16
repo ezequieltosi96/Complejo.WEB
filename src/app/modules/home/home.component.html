@@ -2,7 +2,80 @@
 
     <app-nav-bar></app-nav-bar>
 
-    <div class="main-container container-fluid">
+    <header class="text-center text-white d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-center align-content-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center justify-content-xxl-center masthead" id="header" style="background: url(&quot;assets/img/robinson-greig-AARDxBv3AuE-unsplash%201.png&quot;) center / cover;height: 800px;padding: 0px;padding-bottom: 0px;color: rgb(255,255,255);padding-top: 0px;">
+
+        <router-outlet></router-outlet>
+        
+    </header>
+    
+
+    <section class="text-center bg-light testimonials" style="padding-bottom: 112px;padding-top: 50px;">
+        <div class="container">
+            <h2 class="mb-5" style="font-family: Rubik;">¡Conoce nuestras promociones!</h2>
+            <div class="row">
+                <div class="col-lg-4"><img id="image" src="assets/img/Screen%20Shot%202021-11-10%20at%2015.09.29.png" style="border-radius: 20px;margin-right: 15px;margin-bottom: 15px;margin-left: 15px;" alt="img"></div>
+                <div class="col-lg-4"><img id="image" src="assets/img/Screen%20Shot%202021-11-10%20at%2015.09.34.png" style="border-radius: 20px;margin-right: 15px;margin-bottom: 15px;margin-left: 15px;" alt="img"></div>
+                <div class="col-lg-4"><img id="image" src="assets/img/Screen%20Shot%202021-11-10%20at%2015.09.39.png" style="border-radius: 20px;margin-right: 15px;margin-bottom: 15px;margin-left: 15px;" alt="img"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background: url(&quot;assets/img/Screen%20Shot%202021-11-10%20at%2013.56.22.png&quot;) center / cover no-repeat;"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Rubik;">¿Que te ofrecemos?</h2>
+                    <p class="lead mb-0" style="font-family: Rubik;">Disfruta de tus picados de Fútbol 5, 8 y 11 en nuestro predio. Podrás acceder a nuestra cantina y realizar uso de nuestros vestuarios para tu mayor comodidad.</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 text-white showcase-img" style="background: url(&quot;assets/img/Screen%20Shot%202021-11-10%20at%2013.59.35.png&quot;) center / contain no-repeat, #1c1c1c;"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Rubik;">Protocolos COVID-19</h2>
+                    <p class="lead mb-0" style="font-family: Rubik;">Tomamos todas las medidas de seguridad necesarias para garantizar el cuidado de tu salud.&nbsp;</p>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background: url(&quot;assets/img/Screen%20Shot%202021-11-10%20at%2014.00.55.png&quot;) center / contain no-repeat, #01693b;"><span></span></div>
+                <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                    <h2 style="font-family: Rubik;">Seguridad garantizada</h2>
+                    <p class="lead mb-0" style="font-family: Rubik;">Contamos con un estacionamiento privado y personal de seguridad controlando el acceso y salida del predio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-uppercase text-center text-light bg-dark border-dark shadow footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item"><a style="color: rgb(255,255,255);font-family: Rubik;">Terminos de uso</a></li>
+                        <li class="list-inline-item"><span>⋅</span></li>
+                        <li class="list-inline-item"><a style="color: rgb(255,255,255);font-family: Rubik;">contacto</a></li>
+                        <li class="list-inline-item"></li>
+                        <li class="list-inline-item"></li>
+                        <li class="list-inline-item"></li>
+                        <li class="list-inline-item"></li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0" style="font-family: Rubik;">© el complejo - all rights reserved</p>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a><em class="fa fa-facebook fa-2x fa-fw" style="color: rgb(255,255,255);"></em></a></li>
+                        <li class="list-inline-item"><a><em class="fa fa-twitter fa-2x fa-fw" style="color: rgb(255,255,255);"></em></a></li>
+                        <li class="list-inline-item"><a><em class="fa fa-instagram fa-2x fa-fw" style="color: rgb(255,255,255);"></em></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="assets/js/-Fixed-Navbar-start-with-transparency-background-BS4-.js"></script> -->
+    
+    <!-- <div class="main-container container-fluid">
 
         <h1 class="text-center">Home</h1>
 
@@ -10,8 +83,7 @@
 
         <div class="d-flex justify-content-center">
 
-            <div class="d-flex flex-column">
-                <p class="text-center">User is logged in: {{isLoggedIn}}</p>
+            <div class="d-flex">
 
                 <router-outlet></router-outlet>
             </div>
@@ -59,7 +131,7 @@
         <div class="container text-center">
             <span class="text-muted">© {{year}} El Complejo</span>
         </div>
-    </div>
+    </div> -->
 
 </div>
 

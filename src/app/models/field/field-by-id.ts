@@ -7,6 +7,7 @@ export class FieldById {
                 public status: string,
                 public idTypeGroup: number,
                 public idType: string,
-                public type: string) { }
+                public type: string,
+                public price: number) { }
                 
 }

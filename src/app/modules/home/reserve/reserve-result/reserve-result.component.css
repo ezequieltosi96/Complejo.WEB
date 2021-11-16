@@ -1,0 +1,111 @@
+
+#reservar-card-button {
+    font-family: 'Rubik';
+    background: #1EBF78;
+    border-radius: 35px;
+    border-style: none;
+  }
+  
+  #filter-buble {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 160px !important;
+  }
+  
+  #filter-buble-date {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 160px !important;
+    height: 35px !important;
+  }
+  
+  #filter-buble-hour {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 150px !important;
+    height: 35px !important;
+  }
+  
+  @media (max-width: 420px) {
+    #title {
+      padding: 0px;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #filter-buble {
+      margin-right: 10px !important;
+      margin-left: 0px !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #filter-buble-date {
+      margin-right: 10px !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #filter-buble-hour {
+      margin-right: 10px !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #header-results {
+      height: 1200px !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #filters-container {
+      margin-top: 130px !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #heading-title {
+      margin-right: 0px !important;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    #heading-title {
+      padding-left: 0px! important;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    #filter-buble {
+      margin-left: 0px !important;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    #title {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    #heading-title {
+      margin-left: 0px !important;
+      padding-left: 0px !important;
+    }
+  }
+  
+  @media (max-width: 820px) {
+    #horario-label {
+      padding-left: 0px !important;
+      text-align: center !important;
+    }
+  }
+  
+  @media (max-width: 620px) {
+    #horario-label {
+      text-align: left !important;
+      padding-left: 12px !important;
+    }
+  }
+  
+  

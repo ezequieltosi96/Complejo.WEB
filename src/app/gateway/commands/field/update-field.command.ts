@@ -5,6 +5,7 @@ export class UpdateFieldCommand extends AbstractCreateUpdateFieldCommand {
     constructor(public idField: string,
                 public description: string,
                 public idFieldType: string,
-                public idFieldStatus: string) { super(description, idFieldType, idFieldStatus); }
+                public idFieldStatus: string,
+                public price: number) { super(description, idFieldType, idFieldStatus, price); }
 
 }

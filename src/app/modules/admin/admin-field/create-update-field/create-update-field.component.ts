@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AbstractCreateUpdateFieldCommand } from 'src/app/gateway/commands/field/base/abstract-create-update-field.command';
 import { CreateFieldCommand } from 'src/app/gateway/commands/field/create-field.command';
 import { UpdateFieldCommand } from 'src/app/gateway/commands/field/update-field.command';
 import { GetAllFieldStatusQuery } from 'src/app/gateway/querys/field/all-field-status.query';
@@ -13,6 +12,7 @@ import { FieldService } from 'src/app/services/field.service';
 import { DropDownControl } from 'src/app/shared/dynamic/models/drop-down-control';
 import { FormControlBase } from 'src/app/shared/dynamic/models/form-control-base';
 import { TextBoxControl } from 'src/app/shared/dynamic/models/text-box-control';
+import { Regex } from 'src/app/shared/utils/enums.utils';
 import { isFormValue, isNullOrUndefined } from 'src/app/shared/utils/functions.utils';
 
 @Component({
@@ -24,7 +24,7 @@ export class CreateUpdateFieldComponent implements OnInit {
 
   public id!: string;
 
-  public field: FieldById = new FieldById('' ,'', 0, '', '', 0, '', '');
+  public field: FieldById = new FieldById('' ,'', 0, '', '', 0, '', '', 0);
   public fieldStatus: ComboBox[] = [];
   public fieldTypes: ComboBox[] = [];
 
@@ -153,6 +153,15 @@ export class CreateUpdateFieldComponent implements OnInit {
         label: 'Tipo: ',
         order: 2
       }),
+      new TextBoxControl({
+        key: 'price',
+        value: `${this.field.price}`,
+        type: 'text',
+        label: 'Precio: ',
+        validators: [Validators.required, Validators.pattern(Regex.NUMBERS)],
+        errorMessage: 'Ingresa un precio valido (debe ser mayor a cero).',
+        order: 4
+      }),
     ];
   }
 
@@ -204,7 +213,8 @@ export class CreateUpdateFieldComponent implements OnInit {
     let command: UpdateFieldCommand = new UpdateFieldCommand(this.id, 
                                                              formValue.description, 
                                                              formValue.idFieldType,
-                                                             formValue.idFieldStatus);
+                                                             formValue.idFieldStatus,
+                                                             Number(formValue.price));
 
     return command;
   }
@@ -212,7 +222,8 @@ export class CreateUpdateFieldComponent implements OnInit {
   getCreateCommand(formValue: any) : CreateFieldCommand {
     let command: CreateFieldCommand = new CreateFieldCommand(formValue.description, 
                                                              formValue.idFieldType,
-                                                             formValue.idFieldStatus);
+                                                             formValue.idFieldStatus,
+                                                             Number(formValue.price));
 
     return command;
   }

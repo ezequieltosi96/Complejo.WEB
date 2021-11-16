@@ -1,0 +1,66 @@
+<div class="container" style="font-family: Rubik;">
+    <h3 class="text-center">Datos personales</h3>
+    <p class="text-center text-secondary" style="font-size: 14px;">
+        Para finalizar la reserva de su turno, complete este formulario. 
+        Un usuario se le sera asignado para futuras reservas (usuario: "email" - contraseña: "nombre.apellido" *en minusculas).
+        Si posee un usuario puede iniciar sesion o bien completar el formulario e introducir el mail y dni vinculados a su usaurio.
+    </p>
+
+    <form (ngSubmit)="formSubmit()" [formGroup]="form">
+        
+        &nbsp;
+        <div class="row">
+            <div class="col-2 my-auto">
+                <label class="form-label" for="Name">Nombre:</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="Name" formControlName="Name" class="form-control" [ngClass]="!isValidName && submitted ? 'is-invalid' : ''">
+                <div class="invalid-feedback" *ngIf="!isValidName && submitted">Ingrese un nombre válido.</div>
+            </div>
+            <div class="col-2 my-auto">
+                <label class="form-label" for="LastName">Apellido:</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="LastName" formControlName="LastName" class="form-control" [ngClass]="!isValidLastName && submitted ? 'is-invalid' : ''">
+                <div class="invalid-feedback" *ngIf="!isValidLastName && submitted">Ingrese un apellido válido.</div>
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="row">
+            <div class="col-2 my-auto">
+                <label class="form-label" for="Dni">Dni:</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="Dni" formControlName="Dni" class="form-control" [ngClass]="!isValidDni && submitted ? 'is-invalid' : ''">
+                <div class="invalid-feedback" *ngIf="!isValidDni && submitted">Ingrese un dni válido (8 caracteres).</div>
+            </div>
+            <div class="col-2 my-auto">
+                <label class="form-label" for="PhoneNumber">Teléfono:</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="PhoneNumber" formControlName="PhoneNumber" class="form-control" [ngClass]="!isValidPhoneNumber && submitted ? 'is-invalid' : ''">
+                <div class="invalid-feedback" *ngIf="!isValidPhoneNumber && submitted">Ingrese un teléfono válido (máximo 13 caracteres).</div>
+            </div>
+        </div>
+
+
+        &nbsp;
+        <div class="row">
+            <div class="col-2 my-auto">
+                <label class="form-label" for="Email">Correo:</label>
+            </div>
+            <div class="col-4">
+                <input type="text" name="Email" formControlName="Email" class="form-control" [ngClass]="!isValidEmail && submitted ? 'is-invalid' : ''">
+                <div class="invalid-feedback" *ngIf="!isValidEmail && submitted">Ingrese un correo válido.</div>
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary m-2" type="submit" style="width: 50%;">Concluir reserva</button>
+            <button class="btn btn-secondary m-2" (click)="close()" style="width: 50%;">Cerrar</button>
+        </div>
+    </form>
+
+</div>

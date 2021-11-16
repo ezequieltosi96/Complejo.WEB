@@ -1,0 +1,47 @@
+#modal {
+    backdrop-filter: blur(6px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    background: radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.09) 100%) !important;
+    backdrop-filter: blur(42px) !important;
+  }
+  
+  @media (max-width: 768px) {
+    #modal {
+      width: 110% !important;
+      height: 95% !important;
+    }
+  }
+  
+  
+  
+  @media (max-width: 360px) {
+    #modal {
+      width: 90% !important;
+      padding: 10px !important;
+    }
+  }
+  
+  #info-column {
+    background: radial-gradient(97.57% 210.75% at 0.9% 2.98%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.36) 100%);
+    backdrop-filter: blur(42px);
+    border-radius: 20px;
+  }
+  
+  @media (max-width: 1920px) {
+    #info {
+      justify-content: left !important;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #reserva-button {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    #modal {
+      width: 100% !important;
+    }
+  }

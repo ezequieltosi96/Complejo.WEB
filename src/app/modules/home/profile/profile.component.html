@@ -1,0 +1,28 @@
+<div><!--  TODO: background -->
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="container" style="font-family: Rubik; padding-top: 130px;">
+
+            <h3 class="text-center" style="margin-bottom: 30px;">Mis turnos</h3>
+            
+
+            <app-generic-table  *ngIf="!loading"
+                        [metadata]="metadata" 
+                        [columns]="columns" 
+                        [data]="turns"
+                        (uploaded)="searchByPage($event)"
+                        class="mt-5"></app-generic-table>
+            
+    </div>
+
+    <div class="footer bg-dark fixed-bottom">
+        <div class="container text-center">
+            <span class="text-muted">© {{year}} El Complejo</span>
+        </div>
+    </div>
+
+</div>
+
+
+

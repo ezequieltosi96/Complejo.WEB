@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { GetAllFieldTypeQuery } from 'src/app/gateway/querys/field/all-field-type.query';
 import { ComboBox } from 'src/app/models/responses/combo-box';
 import { BaseComponentService } from 'src/app/services/base/base-component.service';
-import { CheckBoxControl } from 'src/app/shared/dynamic/models/check-box-control';
-import { DropDownControl } from 'src/app/shared/dynamic/models/drop-down-control';
-import { FormControlBase } from 'src/app/shared/dynamic/models/form-control-base';
-import { TextBoxControl } from 'src/app/shared/dynamic/models/text-box-control';
-import { isFormValue } from 'src/app/shared/utils/functions.utils';
+import { DataService } from 'src/app/services/data.service';
+import { FieldService } from 'src/app/services/field.service';
+import { TurnService } from 'src/app/services/turn.service';
+import { isFormValue, isNullOrUndefined } from 'src/app/shared/utils/functions.utils';
 
 @Component({
   selector: 'app-reserve',
@@ -15,84 +15,112 @@ import { isFormValue } from 'src/app/shared/utils/functions.utils';
 })
 export class ReserveComponent implements OnInit {
 
-  // form
-  public controls: FormControlBase<string>[] = [];
-  public submitButtonText: string = "Buscar";
+  public fieldTypes: ComboBox[] = [];
+  public times: ComboBox[] = [];
 
-  public validTimes: ComboBox[] = [ 
-    new ComboBox('9','09:00'), 
-    new ComboBox('10','10:00'), 
-    new ComboBox('11','11:00'), 
-    new ComboBox('12','12:00'), 
-    new ComboBox('13','13:00'), 
-    new ComboBox('14','14:00'), 
-    new ComboBox('15','15:00'), 
-    new ComboBox('16','16:00'), 
-    new ComboBox('17','17:00'), 
-    new ComboBox('18','18:00'), 
-    new ComboBox('19','19:00'), 
-    new ComboBox('20','20:00'), 
-    new ComboBox('21','21:00'), 
-    new ComboBox('22','22:00'), 
-    new ComboBox('23','23:00'), 
-  ];
+  public today: string = new Date().toISOString().split('T')[0];
 
-  public fieldTypes: ComboBox[] = [ //TODO: deben venir del backend todos los tipos no eliminados
-    new ComboBox('1', 'Futbol 5'),
-    new ComboBox('2', 'Futbol 8'),
-    new ComboBox('3', 'Futbol 11'),
-  ]
+  public form: FormGroup = this.bService.formBuilder.group({
+    idFieldType: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    time: ['', [Validators.required]],
+  });
 
-  constructor(private readonly baseComponentService: BaseComponentService) { }
+  constructor(private readonly bService: BaseComponentService,
+              private readonly fieldService: FieldService,
+              private readonly turnService: TurnService,
+              private dataService: DataService) { }
 
   ngOnInit(): void {
 
-    this.initFormControls();
+    this.startLoading();
 
+    let promises: Promise<void>[] = [];
+
+    promises.push(this.getAllFieldTypeByFieldPromise());
+    promises.push(this.getAllValidTimesPromise());
+
+    this.resolvePromises(promises);
   }
 
+  resolvePromises(promises: Promise<void>[]){
+    Promise.all(promises)
+      .finally(() => this.stopLoading());
+  }
 
-  formSubmit(value: any): void {
+  getAllValidTimesPromise() : Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.turnService.GetValidTimesForReservation().subscribe(
+        res => {
+          this.times = res;
+          resolve();
+        },
+        err => {
+          this.times = [];
+          const error = this.bService.handleErrorMessage(err);
+          this.bService.toastr.error(error.message, error.title);
+          reject();
+        }
+      );
+    });
+  }
 
-    if(!isFormValue(value)) {
+  getAllFieldTypeByFieldPromise() : Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.fieldService.GetAllFieldType(new GetAllFieldTypeQuery(null)).subscribe(
+        res => {
+          this.fieldTypes = res;
+          resolve();
+        },
+        err => {
+          this.fieldTypes = [];
+          const error = this.bService.handleErrorMessage(err);
+          this.bService.toastr.error(error.message, error.title);
+          reject();
+        }
+      );
+    });
+  }
+
+  onChangeDate(date: string) {
+    if(isNullOrUndefined(date)){
       return;
     }
 
-    const formValue = JSON.parse(value);
+    this.startLoading();
+    if(date !== this.today){
+      this.resolvePromises([this.getAllValidTimesPromise()]);
+      return;
+    }
 
-    console.log(formValue);
+    const time = new Date().toLocaleTimeString().split(':')[0];
+    let newTimes: ComboBox[] = [];
+    this.times.forEach(value => {
+      if(Number(value.id) > Number(time)){
+        newTimes.push(value);
+      }
+    });
+    this.times = newTimes;
 
-    // aca debe redirigir a la pagina de busqueda de turnos
-    // en esa pagina se mostraran las canchas disponibles y su costo....
-    
+    this.stopLoading();
   }
 
-  private initFormControls() {
-    const fieldTypeControl = new CheckBoxControl({
-      key: 'fieldType',
-      validators: [Validators.required],
-      options: this.fieldTypes,
-      order: 1
-    });
+  formSubmit(): void {
+    if(this.form.invalid) {
+      return;
+    }
+    
+    this.dataService.reserveParams = this.form.value;
+    
+    this.bService.router.navigate(['home/reserve/result']);
+  }
 
-    const validTimesControl = new DropDownControl({
-      key: 'time',
-      label: 'Hora: ',
-      options: this.validTimes,
-      defaultOption: 'Seleccione un valor',
-      validators: [Validators.required],
-      order: 3
-    });
+  private startLoading(){
+    this.bService.spinner.show();
+  }
 
-    const dateControl = new TextBoxControl({
-      key: 'date',
-      label: 'Fecha: ',
-      type: 'date',
-      validators: [Validators.required],
-      order: 2
-    });
-
-    this.controls.push(fieldTypeControl, validTimesControl, dateControl);
+  private stopLoading(){
+    this.bService.spinner.hide();
   }
 
 }
