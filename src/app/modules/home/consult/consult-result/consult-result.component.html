@@ -22,7 +22,7 @@
 
 
 
-<form class="d-flex justify-content-center align-items-center" style="text-align: left;">
+<form *ngIf="!loading && turn !== null && turn !== undefined" class="d-flex justify-content-center align-items-center" style="text-align: left;">
     <div class="container flex-grow-0" id="modal" style="border-radius: 20px;width: 630px;height: 350px;padding: 60px;padding-bottom: 30px;padding-top: 30px;margin-right: 0px;">
         
         <div class="row d-xl-flex d-xxl-flex justify-content-xl-start justify-content-xxl-start align-items-xxl-start" style="padding-left: 18px;margin: 0px;margin-bottom: 20px;">
@@ -82,14 +82,18 @@
             </div>
         </div>
         
-        <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center align-items-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center justify-content-xxl-center align-items-xxl-start" id="buttons-row" style="padding-left: 18px;margin: 0px;margin-bottom: 20px;">
+        <div class="row d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-sm-center align-items-sm-center justify-content-md-end justify-content-lg-center align-items-lg-center justify-content-xl-end justify-content-xxl-end align-items-xxl-start" id="buttons-row" style="padding-left: 18px;margin: 0px;margin-bottom: 20px;">
             <div class="col-auto" style="padding-left: 12px;text-align: left;">
                 <button class="btn btn-primary" type="button" style="font-family: Rubik;background: rgb(145,31,42);border-radius: 35px;border-style: none;" (click)="cancelReservation()">Cancelar reserva</button>
+                <a class="btn btn-primary mx-2" type="button" style="font-family: Rubik;background: rgb(37,211,102);border-radius: 35px;border-style: none;" href="https://wa.me/send?text={{text}}" target="blank"><em class="{{wspIcon}}" style="color: rgb(255,255,255);"></em></a>
+                <a class="btn btn-primary" type="button" style="font-family: Rubik;background: rgb(29,161,242);border-radius: 35px;border-style: none;" href="https://twitter.com/intent/tweet?text={{text}}" target="blank"><em class="{{twitterIcon}}" style="color: rgb(255,255,255);"></em></a>
             </div>
         </div>
-
-        <a href="https://wa.me/send?text=The text to share!" target="blank" class="m-2">Compartir en Whatsapp</a>
-        <a href="https://twitter.com/intent/tweet?text=The text to share!" target="blank">Compartir en Twitter</a>
-
     </div>
 </form>
+
+<ng-container *ngIf="!loading && (turn === null || turn === undefined)">
+    <div class="row">
+        <h3 class="text-center" style="font-family: Rubik;">Turno inexistente</h3>
+    </div>
+</ng-container>

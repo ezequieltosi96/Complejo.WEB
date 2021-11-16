@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CancelTurnCommand } from 'src/app/gateway/commands/turn/cancel-turn.command';
 import { TurnById } from 'src/app/models/turn/turn-by-id';
 import { BaseComponentService } from 'src/app/services/base/base-component.service';
 import { TurnService } from 'src/app/services/turn.service';
+import { FontAwesome } from 'src/app/shared/utils/enums.utils';
 
 @Component({
   selector: 'app-consult-result',
@@ -15,6 +17,10 @@ export class ConsultResultComponent implements OnInit {
 
   public turn!: TurnById;
 
+  public twitterIcon: string = FontAwesome.TWITTER;
+  public wspIcon: string = FontAwesome.WHATSAPP;
+  public text: string = "";
+
   public loading: boolean = true;
 
   constructor(private readonly bService: BaseComponentService,
@@ -26,6 +32,8 @@ export class ConsultResultComponent implements OnInit {
   ngOnInit(): void {
     this.startLoading();
 
+    console.log(this.code)
+
     this.getTurnByCodePromise(this.code)
       .finally(() => this.stopLoading());
   }
@@ -36,6 +44,7 @@ export class ConsultResultComponent implements OnInit {
       this.turnService.GetTurnByCode(code).subscribe(
         res => {
           this.turn = res;
+          this.composeText();
           resolve();
         },
         err => {
@@ -47,8 +56,27 @@ export class ConsultResultComponent implements OnInit {
     });
   }
 
+  composeText() {
+    const turnDescription = `El Complejo Fútbol\n\n${this.turn.clientName} aquí va tu reserva.\n\nFecha: ${this.turn.date}\nHora: ${this.turn.time}:00 hs\nCancha: ${this.turn.fieldType} - ${this.turn.field}\nCódigo: ${this.turn.code}\n\nAnte cualquier consulta no dudes en contactarnos.\nTe esperamos!\n\nEl Complejo Fútbol.`;
+
+    this.text = encodeURIComponent(turnDescription);
+  }
+
   cancelReservation() {
-    //TODO: cancelar la reserva
+    this.startLoading();
+
+    this.turnService.CancelTurn(new CancelTurnCommand(this.turn.id)).subscribe(
+      res => {
+        this.stopLoading();
+        this.bService.toastr.success('Turno cancelado', 'Éxito!');
+        this.bService.router.navigate(['/home/index']);
+      },
+      err => {
+        const error = this.bService.handleErrorMessage(err);
+        this.bService.toastr.error(error.message, error.title);
+        this.stopLoading();
+      }
+    );
   }
 
   private startLoading(){

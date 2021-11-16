@@ -18,7 +18,8 @@ export enum FontAwesome {
 
     APPLE = 'fab fa-apple',
     GOOGLE_PLAY = 'fab fa-google-play',
-    TWITTER = 'fab- fa-twitter',
+    TWITTER = 'fab fa-twitter',
+    WHATSAPP = 'fab fa-whatsapp',
     INSTAGRAM = 'fab fa-instagram',
     FACEBOOK = 'fab fa-facebook',
 

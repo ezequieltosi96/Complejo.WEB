@@ -1,8 +1,8 @@
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background-image: url(&quot;assets/img/robinson-greig-AARDxBv3AuE-unsplash%201.png&quot;); background-position: center;">
     <form [formGroup]="loginForm" (ngSubmit)="loginFormOnSubmit()">
-        <input type="text" class="form-control" formControlName="email" placeholder="email" autocomplete="off" />
-        <input type="password" class="form-control" formControlName="password" placeholder="password" />
-        <button type="submit" class="btn btn-primary">Login</button>
+        <input type="text" class="form-control m-2" formControlName="email" placeholder="email" autocomplete="off" />
+        <input type="password" class="form-control m-2" formControlName="password" placeholder="password" />
+        <button type="submit" class="btn btn-primary m-2" style="background: #1EBF78;border-radius: 35px;border-style: none;font-family: Rubik;max-width: 100%;">Ingresar</button>
     </form>
 </div>

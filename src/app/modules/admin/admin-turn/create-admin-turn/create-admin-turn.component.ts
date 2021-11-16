@@ -42,10 +42,10 @@ export class CreateAdminTurnComponent implements OnInit {
     date: ['', [Validators.required]],
     time: ['', [Validators.required]],
     idField: ['', [Validators.required]],
-    clientName: ['', [Validators.required, Validators.pattern(Regex.LETTERS_SPACE)]], //TODO: checkear que pasa con la pass si tiene un espacio
+    clientName: ['', [Validators.required, Validators.pattern(Regex.LETTERS_SPACE)]],
     clientLastName: ['', [Validators.required, Validators.pattern(Regex.LETTERS_SPACE)]],
     clientDni: ['', [Validators.required, Validators.pattern(Regex.NUMBERS), Validators.minLength(8), Validators.maxLength(8)]],
-    clientPhoneNumber: ['', [Validators.required, Validators.maxLength(13), Validators.pattern(Regex.NUMBERS)]], //TODO: regex para numeros y el +
+    clientPhoneNumber: ['', [Validators.required, Validators.maxLength(13), Validators.pattern(Regex.NUMBERS)]],
     clientEmail: ['', [Validators.required, Validators.email]]
   });
 

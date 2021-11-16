@@ -1,19 +1,19 @@
 
-<div class="d-flex justify-content-center">
-    <form [formGroup]="registerForm" (ngSubmit)="registerFormOnSubmit()" autocomplete="off">
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background-image: url(&quot;assets/img/robinson-greig-AARDxBv3AuE-unsplash%201.png&quot;); background-position: center;">
+    <form [formGroup]="registerForm" (ngSubmit)="registerFormOnSubmit()" autocomplete="off" style="width: 350px; max-width: 75%;">
         
-        <input type="text" class="form-control" formControlName="email" placeholder="email" autocomplete="off"/>
+        <input type="text" class="form-control m-2" formControlName="email" placeholder="correo" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="dni" placeholder="dni" autocomplete="off"/>
+        <input type="text" class="form-control m-2" formControlName="dni" placeholder="dni" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="phoneNumber" placeholder="phone number" autocomplete="off"/>
+        <input type="text" class="form-control m-2" formControlName="phoneNumber" placeholder="numero de teléfono" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="name" placeholder="name" autocomplete="off"/>
+        <input type="text" class="form-control m-2" formControlName="name" placeholder="nombre" autocomplete="off"/>
 
-        <input type="text" class="form-control" formControlName="lastName" placeholder="last name" autocomplete="off"/>
+        <input type="text" class="form-control m-2" formControlName="lastName" placeholder="apellido" autocomplete="off"/>
         
-        <input type="password" class="form-control" formControlName="password" placeholder="password" autocomplete="off"/>
+        <input type="password" class="form-control m-2" formControlName="password" placeholder="contraseña" autocomplete="off"/>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary m-2" style="background: #1EBF78;border-radius: 35px;border-style: none;font-family: Rubik;max-width: 100%;">Registrarse</button>
     </form>
 </div>

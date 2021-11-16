@@ -20,6 +20,8 @@ export class GenericTableComponent implements OnInit {
   public columns: ColumnTable[] = [];
   @Input()
   public actions: ActionTable[] = [];
+  @Input()
+  public color: boolean = false;
 
 
   @Output() 

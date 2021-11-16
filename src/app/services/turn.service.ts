@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { CancelTurnCommand } from '../gateway/commands/turn/cancel-turn.command';
 import { CreateReservationLoggedInClientCommand } from '../gateway/commands/turn/create-reservation-logged-in-client.command';
 import { CreateReservationUnregisteredClientCommand } from '../gateway/commands/turn/create-reservation-unregistered-client.command';
 import { CreateTurnAdminCommand } from '../gateway/commands/turn/create-turn-admin.command';
@@ -58,6 +59,11 @@ export class TurnService {
 
   DeleteTurn(id: string) : Observable<object> {
     return this.apiService.delete(this.prefix, id);
+  }
+
+  CancelTurn(command: CancelTurnCommand) : Observable<object> {
+    const url = `${this.prefix}/cancel`;
+    return this.apiService.delete(url, command.id);
   }
 
   GetTurnByCode(code: string) : Observable<TurnById> {

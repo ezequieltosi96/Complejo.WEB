@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <table aria-hidden="true" class="table table-hover table-striped text-center">
+        <table aria-hidden="true" class="table table-hover text-center" [ngClass]=" color ? 'table-dark' : ''">
             
             <thead>
                 <tr class="bg-dark text-white">
@@ -11,7 +11,7 @@
         
             <tbody>
                 <ng-container *ngIf="data !== undefined && data !== null && data.length > 0">
-                    <tr *ngFor="let item of data">
+                    <tr *ngFor="let item of data" [ngClass]=" color ? 'text-white' : ''">
                         <ng-container *ngFor="let column of columns">
                             <td *ngIf="column.transform !== undefined">{{ column.transform(item[column.dataProperty]) }}</td>
                             <td *ngIf="column.transform === undefined">{{ item[column.dataProperty] }}</td>
